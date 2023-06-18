@@ -19,17 +19,23 @@ export default function Card({ data, clickCard, flipped, found }) {
       founded = true;
     }
   });
-  return founded ? (
-    <div></div>
-  ) : flipped ? (
-    <div>
-      <img src={cars[data.figure - 1]} width="200" />
-      {data.figure}
-    </div>
-  ) : (
-    <div onClick={() => clickCard(data)}>
-      <img src={cardBack} width="200" />
-      {data.figure}
+  return (
+    <div className="divCard">
+      {founded ? (
+        <div></div>
+      ) : flipped ? (
+        <div>
+          <img src={cars[data.figure - 1]} width="100%" />
+          {/* V CHEAT MODE V */}
+          {/*{data.figure} */}
+        </div>
+      ) : (
+        <div onClick={() => clickCard(data)}>
+          <img src={cardBack} width="100%" />
+          {/* V CHEAT MODE V */}
+          {/*{data.figure} */}
+        </div>
+      )}
     </div>
   );
 

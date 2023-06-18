@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Board from "./components/Board";
-import CardSort from "./components/CardSort";
 import Hud from "./components/Hud";
 
 function App() {
@@ -27,18 +26,20 @@ function App() {
   };
 
   const handleTurn = () => {
-    console.log("s", turn);
     setTurn(turn === "red" ? "blue" : "red");
   };
 
   const redStats = { Turn: redTurnedCards, Points: redPoints };
   const blueStats = { Turn: blueTurnedCards, Points: bluePoints };
 
+  const stats = { Red: redStats, Blue: blueStats };
+
   function cardSort() {
     let rows = 3;
     let cols = 6;
     let numbers = (rows * cols) / 2;
     let data = [];
+
     for (let i = 0; i < 2; i++) {
       for (let number = 0; number < numbers; number++) {
         data.push(number + 1);
@@ -60,7 +61,7 @@ function App() {
 
   return (
     <>
-      <Hud redStats={redStats} blueStats={blueStats} turn={turn} />
+      <Hud stats={stats} turn={turn} />
       {board.length > 0 && (
         <Board
           data={board}
@@ -68,6 +69,7 @@ function App() {
           handleIncrementPoints={handleIncrementPoints}
           handleTurn={handleTurn}
           showTime={showTime}
+          stats={stats}
         />
       )}
     </>

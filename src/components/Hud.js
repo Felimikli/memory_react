@@ -1,13 +1,17 @@
 import React from "react";
+import Counter from "./Counter";
+import TurnShow from "./TurnShow";
 
-export default function Hud({ redStats, blueStats, turn }) {
+export default function Hud({ stats, turn }) {
   return (
     <>
-      <div>
-        {turn}
-        {turn === "red"
-          ? redStats.Points + "/" + redStats.Turn
-          : blueStats.Points + "/" + blueStats.Turn}
+      <div className="hud">
+        <div className="hudTurn">
+          <TurnShow turn={turn} />
+        </div>
+        <div className="hudCounter">
+          <Counter stats={stats} />
+        </div>
       </div>
     </>
   );

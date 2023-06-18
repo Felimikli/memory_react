@@ -8,6 +8,7 @@ export default function Board({
   handleIncrementPoints,
   handleTurn,
   showTime,
+  stats,
 }) {
   const [showCard1, setShowCard1] = useState(null);
   const [showCard2, setShowCard2] = useState(null);
@@ -31,12 +32,12 @@ export default function Board({
   useEffect(() => {
     if (showCard1 && showCard2 && showCard1.figure === showCard2.figure) {
       handleIncrementPoints();
-
-      const newFound = [...found, showCard1, showCard2];
-
-      setFound(newFound);
-      setShowCard1(null);
-      setShowCard2(null);
+      setTimeout(() => {
+        const newFound = [...found, showCard1, showCard2];
+        setFound(newFound);
+        setShowCard1(null);
+        setShowCard2(null);
+      }, showTime);
     }
     console.log(showCard1, showCard2);
   }, [showCard1, showCard2]);
@@ -44,10 +45,6 @@ export default function Board({
   function createBoard(data) {
     const rows = data.length;
     const cols = data[0].length;
-
-    if (found.length === rows * cols) {
-      alert("You Win!");
-    }
 
     const arrayRows = [];
 
@@ -77,5 +74,9 @@ export default function Board({
 
     return arrayRows;
   }
-  return <Container fluid>{createBoard(data)}</Container>;
+  return (
+    <div className="board">
+      <Container fluid>{createBoard(data)}</Container>
+    </div>
+  );
 }

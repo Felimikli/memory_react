@@ -1,3 +1,53 @@
-body {
-  color: blue;
+* {
+  background-color: lightgray;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.hudTurn {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  font-size: 70px;
+  border: 2px solid black;
+}
+.hudCounter {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  font-size: 50px;
+}
+
+/* .counter {
+  display: grid;
+  align-items: right;
+  text-align: center;
+  padding: 0;
+  font-size: 50px;
+} */
+.counterWrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.counterRed {
+  width: 50%;
+  float: left;
+  border: 1px solid red;
+}
+.counterBlue {
+  width: 50%;
+  float: left;
+  border: 1px solid blue;
+}
+div.col {
+  padding: 0.4%;
+}
+.board {
+  margin: 0px;
+  padding: 30px;
 }
