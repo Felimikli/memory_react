@@ -5,12 +5,19 @@ export default function Counter({ stats }) {
     <div className="counter">
       Counter:
       <div className="counterWrapper">
-        <div className="counterRed">
-          RED {stats.Red.Points + "/" + stats.Red.Turn}{" "}
+        <div className="counterPlayer1">
+          {stats.player1.name +
+            " " +
+            stats.player1.points +
+            "/" +
+            stats.player1.turn}
         </div>
-        <div className="counterBlue">
-          {" "}
-          {stats.Blue.Points + "/" + stats.Blue.Turn} BLUE
+        <div className="counterPlayer2">
+          {stats.player2.name +
+            " " +
+            stats.player2.points +
+            "/" +
+            stats.player2.turn}
         </div>
       </div>
     </div>

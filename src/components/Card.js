@@ -12,7 +12,7 @@ import card9 from "../images/cars/9.jpg";
 
 const cars = [card1, card2, card3, card4, card5, card6, card7, card8, card9];
 
-export default function Card({ data, clickCard, flipped, found }) {
+export default function Card({ data, clickCard, flipped, found, turn }) {
   let founded = false;
   found.forEach((element) => {
     if (element.id === data.id) {
@@ -22,18 +22,24 @@ export default function Card({ data, clickCard, flipped, found }) {
   return (
     <div className="divCard">
       {founded ? (
-        <div></div>
+        <div>
+          <img
+            src={cars[data.figure - 1]}
+            width="100%"
+            style={{ opacity: 0.4, border: `4px solid ${turn}` }}
+          />
+        </div>
       ) : flipped ? (
         <div>
           <img src={cars[data.figure - 1]} width="100%" />
           {/* V CHEAT MODE V */}
-          {/*{data.figure} */}
+          {data.figure}
         </div>
       ) : (
         <div onClick={() => clickCard(data)}>
           <img src={cardBack} width="100%" />
           {/* V CHEAT MODE V */}
-          {/*{data.figure} */}
+          {data.figure}
         </div>
       )}
     </div>

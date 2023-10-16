@@ -9,22 +9,28 @@ export default function Board({
   handleTurn,
   showTime,
   stats,
+  turn,
+  handleFound,
+  found,
 }) {
   const [showCard1, setShowCard1] = useState(null);
   const [showCard2, setShowCard2] = useState(null);
-  const [found, setFound] = useState([]);
 
   const clickCard = (data) => {
     if (!showCard1) {
       setShowCard1(data);
     } else if (!showCard2) {
       handleIncrementTurnedCards();
+      setShowCard2(data);
+
       setTimeout(() => {
-        handleTurn();
+        if (showCard1.figure !== data.figure) {
+          handleTurn();
+        }
+
         setShowCard1(null);
         setShowCard2(null);
       }, showTime);
-      setShowCard2(data);
     }
   };
   {
@@ -34,12 +40,11 @@ export default function Board({
       handleIncrementPoints();
       setTimeout(() => {
         const newFound = [...found, showCard1, showCard2];
-        setFound(newFound);
+        handleFound(newFound);
         setShowCard1(null);
         setShowCard2(null);
       }, showTime);
     }
-    console.log(showCard1, showCard2);
   }, [showCard1, showCard2]);
 
   function createBoard(data) {
@@ -63,6 +68,7 @@ export default function Board({
                 (showCard2 && pos === showCard2.id)
               }
               found={found}
+              turn={turn}
             />
           </Col>
         );
